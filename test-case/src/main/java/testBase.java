@@ -3,6 +3,10 @@ import org.jsoup.nodes.Document;
 import org.openqa.selenium.By;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 class testBaseClass {
     public static final String webSiteHost = "https://www.rdveikals.lv/";
@@ -27,6 +31,17 @@ class testBaseClass {
                 .attr("content"));
         String productName = doc.select("meta[name=keywords]").attr("content");
         purchase.setPurchaseName(productName.replaceAll(".*,", ""));
+        String price = doc.getElementsByClass("Price").get(0).text();
+        price = price.replaceAll("[^\\d.]", "");
+        purchase.setPurchasePrice(new BigDecimal(price));
     }
+
+    public void addToCart(String link) {
+        open(link);
+        $("div.product-info__buttons.group.group--none > a").doubleClick();
+        $("#in-cart > div.container > div > div.in-cart-popover__info > div.group.group--small > a.btn.btn--primary.js-close").click();
+    }
+
+
 }
 
