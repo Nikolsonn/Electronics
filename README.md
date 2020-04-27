@@ -1,5 +1,5 @@
 # Electronics
-
+Test exesise 
 Develop automated tests with Java language for an online shop https://www.rdveikals.lv/
  
 Task 1
@@ -23,3 +23,7 @@ Required frameworks:
 1. TestNG or JUnit
 2. Selenium or Selenide
 3. Allure report
+
+VM option to run tests locally via TestNG cinfiguration
+-Dselenide.browser=chrome
+-Dselenide.startMaximized=true
